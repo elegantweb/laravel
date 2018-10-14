@@ -2,7 +2,6 @@
 
 return [
 
-    'main_navigation' => 'MAIN NAVIGATION',
     'dashboard' => 'Dashboard',
     'welcome' => 'Welcome',
     'version' => 'Version',

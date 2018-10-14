@@ -3,7 +3,7 @@
 @section('title', 'End Users')
 
 @section('content')
-@component('admin::panel.components.box')
+@component('admin::components.box')
 @slot('title', 'List')
 @slot('body')
 <table class="table table-bordered" id="users-table">
@@ -27,14 +27,6 @@ var $usersTable = $('#users-table');
 var usersDataTable = $usersTable.DataTable({
     serverSide: true,
     ajax: '{{ route('admin.endusers.datatables') }}',
-    buttons: [
-        {
-            text: 'New',
-            action: function (e, dt, node, config) {
-                window.location = '{{ route('admin.endusers.create') }}';
-            }
-        }
-    ],
     order: [[0, 'desc']],
     columns: [
         {

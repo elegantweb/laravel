@@ -1,7 +1,3 @@
-<li class="header">
-    {{ trans('admin.main_navigation') }}
-</li>
-
 <li>
     <a href="{{ route('admin.dashboard') }}">
         <i class="fa fa-dashboard"></i> <span>{{ trans('admin.dashboard') }}</span>
@@ -9,8 +5,8 @@
 </li>
 
 <li class="treeview">
-    <a href="#">
-        <i class="fa fa-users"></i> <span>Endusers</span>
+    <a href="{{ route('admin.endusers.index') }}">
+        <i class="fa fa-users"></i> <span>End Users</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
         </span>
@@ -22,7 +18,7 @@
 </li>
 
 <li class="treeview">
-    <a href="#">
+    <a href="{{ route('admin.users.index') }}">
         <i class="fa fa-users"></i> <span>Users</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>

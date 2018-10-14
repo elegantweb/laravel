@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin\Panel;
 
 use App\Models\Enduser;
-use App\Http\Requests\Admin\Enduser\StoreRequest;
-use App\Http\Requests\Admin\Enduser\UpdateRequest;
-use App\Http\Requests\Admin\Enduser\UpdatePasswordRequest;
+use App\Http\Requests\Enduser\StoreRequest;
+use App\Http\Requests\Enduser\UpdateRequest;
+use App\Http\Requests\Enduser\UpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -19,7 +19,7 @@ class EnduserController extends Controller
     public function datatables()
     {
         return datatables()->of(Enduser::query())
-                           ->addColumn('actions', 'admin.endusers.datatables.actions')
+                           ->addColumn('actions', 'admin.panel.endusers.datatables.actions')
                            ->rawColumns(['actions'])
                            ->toJson();
     }
@@ -39,7 +39,7 @@ class EnduserController extends Controller
 
     public function edit(Enduser $enduser)
     {
-        return view('admin.panel.endusers.edit', compact('customer'));
+        return view('admin.panel.endusers.edit', compact('enduser'));
     }
 
     public function update(UpdateRequest $request, Enduser $enduser)
@@ -58,9 +58,9 @@ class EnduserController extends Controller
                          ->with('status:success', 'User successfully updated.');
     }
 
-    public function destroy(Enduser $customer)
+    public function destroy(Enduser $enduser)
     {
-        $customer->delete();
+        $enduser->delete();
 
         return redirect()->back()
                          ->with('status:success', 'User successfully removed.');

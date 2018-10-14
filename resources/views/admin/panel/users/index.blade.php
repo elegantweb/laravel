@@ -3,7 +3,7 @@
 @section('title', 'Users')
 
 @section('content')
-@component('admin::panel.components.box')
+@component('admin::components.box')
 @slot('title', 'List')
 @slot('body')
 <table class="table table-bordered" id="users-table">

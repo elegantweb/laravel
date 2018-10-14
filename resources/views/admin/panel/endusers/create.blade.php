@@ -3,7 +3,7 @@
 @section('title', 'End Users')
 
 @section('content')
-@component('admin::panel.components.box')
+@component('admin::components.box')
 @slot('title', 'Create')
 @slot('body')
 <form id="create-form" method="POST" action="{{ route('admin.endusers.store') }}">

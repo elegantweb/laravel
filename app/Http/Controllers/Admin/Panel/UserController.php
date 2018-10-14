@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Panel;
 
 use App\Models\User;
-use App\Http\Requests\Admin\User\UpdateRequest;
-use App\Http\Requests\Admin\User\UpdatePasswordRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -18,7 +18,7 @@ class UserController extends Controller
     public function datatables()
     {
         return datatables()->of(User::query())
-                           ->addColumn('actions', 'admin.users.datatables.actions')
+                           ->addColumn('actions', 'admin.panel.users.datatables.actions')
                            ->rawColumns(['actions'])
                            ->toJson();
     }

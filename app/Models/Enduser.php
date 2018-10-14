@@ -36,13 +36,6 @@ class Enduser extends Authenticatable
     ];
 
     /**
-     * @var array
-     */
-    protected $appends = [
-        'is_disabled',
-    ];
-
-    /**
      * The universal validation rules of this model.
      *
      * @param  Enduser|null $user

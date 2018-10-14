@@ -1,9 +1,9 @@
-@extends('admin::panel.layouts.box')
+@extends('admin::panel.layouts.base')
 
 @section('title', "End Users")
 
 @section('content')
-@component('admin::panel.components.box')
+@component('admin::components.box')
 @slot('title', 'Edit')
 @slot('body')
 <form id="edit-form" method="POST" action="{{ route('admin.endusers.update', [$enduser]) }}">
@@ -39,13 +39,13 @@
 </form>
 @endslot
 @slot('footer')
-<button type="submit" class="btn btn-primary" form="edit-from">
+<button type="submit" class="btn btn-primary" form="edit-form">
     Save
 </button>
 @endslot
 @endcomponent
 
-@component('admin::panel.components.box')
+@component('admin::components.box')
 @slot('title', 'Edit Password')
 @slot('body')
 <form id="edit-password-form" method="POST" action="{{ route('admin.endusers.update.password', [$enduser]) }}">
@@ -69,7 +69,7 @@
 </form>
 @endslot
 @slot('footer')
-<button type="submit" class="btn btn-primary" form="edit-password-from">
+<button type="submit" class="btn btn-primary" form="edit-password-form">
     Save Password
 </button>
 @endslot
