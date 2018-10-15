@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Panel;
+namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\Models\User;
 use App\Http\Requests\User\UpdateRequest;
