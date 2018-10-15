@@ -272,12 +272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elegantweb/laravel-admin.git",
-                "reference": "8fbc59df33445f91e545c1039d07a897d6d91e4c"
+                "reference": "83ed163ffae2b74b959bebf1f8cf49f98e68ae53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elegantweb/laravel-admin/zipball/8fbc59df33445f91e545c1039d07a897d6d91e4c",
-                "reference": "8fbc59df33445f91e545c1039d07a897d6d91e4c",
+                "url": "https://api.github.com/repos/elegantweb/laravel-admin/zipball/83ed163ffae2b74b959bebf1f8cf49f98e68ae53",
+                "reference": "83ed163ffae2b74b959bebf1f8cf49f98e68ae53",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +307,7 @@
                     "email": "sharifzadesina@gmail.ocm"
                 }
             ],
-            "time": "2018-10-14T19:36:46+00:00"
+            "time": "2018-10-15T18:00:15+00:00"
         },
         {
             "name": "erusev/parsedown",

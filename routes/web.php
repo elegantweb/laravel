@@ -13,8 +13,9 @@
 
 Route::group([
     'middleware' => ['front'],
+    'namespace' => 'Front',
 ], function () {
 
-    require('web.fornt.php');
+    require('web.front.php');
 
 });
