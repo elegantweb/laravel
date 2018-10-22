@@ -5,7 +5,9 @@ use Illuminate\Database\Schema\Builder as Schema;
 // Decimal rule
 
 Validator::extend('decimal', function ($attribute, $value, $parameters, $validator) {
-    return (bool) preg_match("/^\d{1,{$parameters[0]}}(\.\d{1,{$parameters[1]}})?$/", $value);
+    $precision = $parameters[0] - $parameters[1];
+    $scale = $parameters[1];
+    return (bool) preg_match("/^\d{1,{$precision}}(\.\d{1,{$scale}})?$/", $value);
 });
 
 Validator::replacer('decimal', function ($message, $attribute, $rule, $parameters) {
