@@ -24,6 +24,16 @@ Validator::replacer('max_db_string', function ($message, $attribute, $rule, $par
     return str_replace([':max'], [Schema::$defaultStringLength], $message);
 });
 
+// Max database tiny text rule
+
+Validator::extend('max_db_text_tiny', function ($attribute, $value, $parameters, $validator) {
+    return is_string($value) && strlen($value) <= 255;
+});
+
+Validator::replacer('max_db_text_tiny', function ($message, $attribute, $rule, $parameters) {
+    return str_replace([':max'], [255], $message);
+});
+
 // Max database text rule
 
 Validator::extend('max_db_text', function ($attribute, $value, $parameters, $validator) {
@@ -34,7 +44,7 @@ Validator::replacer('max_db_text', function ($message, $attribute, $rule, $param
     return str_replace([':max'], [65535], $message);
 });
 
-// Max database medum text rule
+// Max database medium text rule
 
 Validator::extend('max_db_text_medium', function ($attribute, $value, $parameters, $validator) {
     return is_string($value) && strlen($value) <= 16777215;
@@ -42,4 +52,14 @@ Validator::extend('max_db_text_medium', function ($attribute, $value, $parameter
 
 Validator::replacer('max_db_text_medium', function ($message, $attribute, $rule, $parameters) {
     return str_replace([':max'], [16777215], $message);
+});
+
+// Max database long text rule
+
+Validator::extend('max_db_text_long', function ($attribute, $value, $parameters, $validator) {
+    return is_string($value) && strlen($value) <= 4294967295;
+});
+
+Validator::replacer('max_db_text_long', function ($message, $attribute, $rule, $parameters) {
+    return str_replace([':max'], [4294967295], $message);
 });
