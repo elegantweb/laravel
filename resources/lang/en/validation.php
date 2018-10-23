@@ -88,9 +88,11 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
     'decimal'              => 'The :attribute must be a number with total of :m digits that can has :d points.',
-    'max_db_string'        => 'The :attribute may not be greater than :max characters.',
-    'max_db_text'          => 'The :attribute may not be greater than :max characters.',
-    'max_db_text_medium'   => 'The :attribute may not be greater than :max characters.',
+    'max_db_string'        => 'The :attribute is too big to store.',
+    'max_db_text_tiny'     => 'The :attribute is too big to store.',
+    'max_db_text'          => 'The :attribute is too big to store.',
+    'max_db_text_medium'   => 'The :attribute is too big to store.',
+    'max_db_text_long'     => 'The :attribute is too big to store.',
 
     /*
     |--------------------------------------------------------------------------
