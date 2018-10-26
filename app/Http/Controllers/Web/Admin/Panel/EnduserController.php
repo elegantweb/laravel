@@ -52,7 +52,12 @@ class EnduserController extends Controller
 
     public function updatePassword(UpdatePasswordRequest $request, Enduser $enduser)
     {
-        $enduser->update($request->validated());
+        $input = $request->validated();
+
+        $attributes = [];
+        $attributes['password'] = bcrypt($input['password']);
+
+        $enduser->update($attributes);
 
         return redirect()->back()
                          ->with('status:success', 'User successfully updated.');

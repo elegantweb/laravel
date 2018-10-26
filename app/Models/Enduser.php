@@ -38,17 +38,31 @@ class Enduser extends Authenticatable
     /**
      * The universal validation rules of this model.
      *
-     * @param  Enduser|null $user
+     * @param  self|null $user
      * @return array
      */
-    public static function rules(Enduser $user = null)
+    public static function rules(self $model = null)
     {
         $rules = [];
         $rules['name'] = ['required', 'string', 'max_db_string'];
         $rules['email'] = ['required', 'email', 'max_db_string'];
-        if ($user) $rules['email'][] = Rule::unique('users')->ignore($user->id);
-        else $rules['email'][] = Rule::unique('users');
+        if ($model) $rules['email'][] = Rule::unique($model->getTable())->ignore($model->id);
+        else $rules['email'][] = Rule::unique($model->getTable());
         $rules['password'] = ['required', 'string', 'min:6', 'max_db_string', 'confirmed'];
         return $rules;
+    }
+
+    /**
+     * The universal sanitization filters of this model.
+     *
+     * @param  self|null $user
+     * @return array
+     */
+    public static function filters(self $model = null)
+    {
+        $filters = [];
+        $filters['name'] = ['trim', 'capitalize', 'escape'];
+        $filters['email'] = ['trim', 'lowercase'];
+        return $filters;
     }
 }

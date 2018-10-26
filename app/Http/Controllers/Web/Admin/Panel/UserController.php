@@ -38,7 +38,12 @@ class UserController extends Controller
 
     public function updatePassword(UpdatePasswordRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $input = $request->validated();
+
+        $attributes = [];
+        $attributes['password'] = bcrypt($input['password']);
+
+        $user->update($attributes);
 
         return redirect()->back()
                          ->with('status:success', 'User successfully updated.');
