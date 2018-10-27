@@ -16,3 +16,7 @@ mix.sass('resources/assets/sass/front/front.scss', 'public/css');
 
 mix.js('resources/assets/js/admin/admin.js', 'public/js');
 mix.sass('resources/assets/sass/admin/admin.scss', 'public/css');
+
+if (mix.inProduction()) {
+    mix.version();
+}
