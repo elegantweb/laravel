@@ -4,20 +4,20 @@
 
 @section('content')
 @component('admin::components.box')
-    @slot('title', 'List')
-    @slot('body')
-        <table class="table table-bordered" id="users-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created at</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-        </table>
-    @endslot
+@slot('title', 'List')
+@slot('body')
+    <table class="table table-bordered" id="users-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+@endslot
 @endcomponent
 @endsection
 

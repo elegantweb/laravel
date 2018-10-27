@@ -38,7 +38,7 @@ class Enduser extends Authenticatable
     /**
      * The universal validation rules of this model.
      *
-     * @param  self|null $user
+     * @param  self|null $model
      * @return array
      */
     public static function rules(self $model = null)
@@ -46,8 +46,8 @@ class Enduser extends Authenticatable
         $rules = [];
         $rules['name'] = ['required', 'string', 'max_db_string'];
         $rules['email'] = ['required', 'email', 'max_db_string'];
-        if ($model) $rules['email'][] = Rule::unique($model->getTable())->ignore($model->id);
-        else $rules['email'][] = Rule::unique($model->getTable());
+        if ($model) $rules['email'][] = Rule::unique((new static)->getTable())->ignore($model->id);
+        else $rules['email'][] = Rule::unique((new static)->getTable());
         $rules['password'] = ['required', 'string', 'min:6', 'max_db_string', 'confirmed'];
         return $rules;
     }
