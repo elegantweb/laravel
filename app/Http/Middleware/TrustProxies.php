@@ -22,4 +22,12 @@ class TrustProxies extends Middleware
      * @var array
      */
     protected $headers = Request::HEADER_X_FORWARDED_ALL;
+
+    /**
+     * Create a new trusted proxies middleware instance.
+     */
+    public function __construct()
+    {
+        $this->proxies = array_merge($this->proxies, array_filter(array_map('trim', explode(',', env('APP_TRUST_PROXIES')))));
+    }
 }
