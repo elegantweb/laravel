@@ -14,9 +14,6 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/front/front.js', 'public/js');
 mix.sass('resources/assets/sass/front/front.scss', 'public/css');
 
-mix.js('resources/assets/js/admin/admin.js', 'public/js');
-mix.sass('resources/assets/sass/admin/admin.scss', 'public/css');
-
 let options = {};
 
 if (mix.inProduction()) {
