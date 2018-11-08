@@ -31,3 +31,9 @@ $('.sidebar-menu li.treeview > a').each(function () {
         $(this).parent().addClass('active');
     }
 });
+
+/* Select field autovalue */
+
+$('select[value]').each(function () {
+    $(this).find(`option[value="${$(this).attr('value')}"]`).prop('selected', true);
+});
