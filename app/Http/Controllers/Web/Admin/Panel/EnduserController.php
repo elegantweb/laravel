@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\Models\Enduser;
+use App\DataTables\EndusersDataTable;
 use App\Http\Requests\Enduser\StoreRequest;
 use App\Http\Requests\Enduser\UpdateRequest;
 use App\Http\Requests\Enduser\UpdatePasswordRequest;
@@ -18,10 +19,7 @@ class EnduserController extends Controller
 
     public function datatables()
     {
-        return datatables()->of(Enduser::query())
-                           ->addColumn('actions', 'admin.panel.endusers.datatables.actions')
-                           ->rawColumns(['actions'])
-                           ->toJson();
+        return new EndusersDataTable(Enduser::query());
     }
 
     public function create()
