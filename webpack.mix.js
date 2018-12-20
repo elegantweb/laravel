@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,11 +14,11 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/front/front.js', 'public/js');
 mix.sass('resources/assets/sass/front/front.scss', 'public/css');
 
-let options = {};
-
-if (mix.inProduction()) {
-    options.postCss = [require('postcss-discard-comments')({ removeAll: true })];
-}
+mix.options({
+    cssNano: {
+        discardComments: { removeAll: true }
+    }
+});
 
 mix.options(options);
 
