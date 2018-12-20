@@ -20,8 +20,6 @@ mix.options({
     }
 });
 
-mix.options(options);
-
 if (mix.inProduction()) {
     mix.version();
 }
