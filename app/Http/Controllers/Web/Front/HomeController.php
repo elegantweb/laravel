@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Web\Front;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
-    public function index()
+    public function show()
     {
-        return view('front.home.index');
+        return view('front.home.show');
     }
 }

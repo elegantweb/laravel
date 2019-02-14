@@ -12,6 +12,17 @@
 */
 
 Route::group([
+    'as' => 'admin.',
+    'prefix' => config('admin.routes.prefix'),
+    'middleware' => config('admin.routes.middleware'),
+    'namespace' => 'Admin',
+], function () {
+
+    require('web.admin.php');
+
+});
+
+Route::group([
     'middleware' => ['front'],
     'namespace' => 'Front',
 ], function () {

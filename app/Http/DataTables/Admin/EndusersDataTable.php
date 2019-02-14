@@ -1,15 +1,15 @@
 <?php
 
-namespace App\DataTables;
+namespace App\Http\DataTables\Admin;
 
-use App\Models\Enduser;
+use App\Enduser;
 use Elegant\DataTables\Model;
 
 class EndusersDataTable extends Model
 {
     protected $addon = ['actions'];
     protected $raw = ['actions'];
-    protected $hidden = ['password', 'remember_token'];
+    protected $exclude = ['password', 'remember_token'];
     protected $blacklist = ['password', 'remember_token'];
 
     public function columnActions(Enduser $enduser)

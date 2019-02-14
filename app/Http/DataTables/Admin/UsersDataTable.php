@@ -1,15 +1,15 @@
 <?php
 
-namespace App\DataTables;
+namespace App\Http\DataTables\Admin;
 
-use App\Models\User;
+use App\User;
 use Elegant\DataTables\Model;
 
 class UsersDataTable extends Model
 {
     protected $addon = ['actions'];
     protected $raw = ['actions'];
-    protected $hidden = ['password', 'remember_token'];
+    protected $exclude = ['password', 'remember_token'];
     protected $blacklist = ['password', 'remember_token'];
 
     public function columnActions(User $user)

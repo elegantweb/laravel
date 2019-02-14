@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Web\Admin\Panel;
 
-use App\Models\Enduser;
-use App\DataTables\EndusersDataTable;
-use App\Http\Requests\Enduser\StoreRequest;
-use App\Http\Requests\Enduser\UpdateRequest;
-use App\Http\Requests\Enduser\UpdatePasswordRequest;
+use App\Enduser;
+use App\Http\DataTables\Admin\EndusersDataTable;
+use App\Http\Requests\Admin\Enduser\StoreRequest;
+use App\Http\Requests\Admin\Enduser\UpdateRequest;
+use App\Http\Requests\Admin\Enduser\UpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Enduser;
+namespace App\Http\Requests\Admin\User;
 
-use App\Models\Enduser;
-use Illuminate\Foundation\Http\FormRequest;
-use Waavi\Sanitizer\Laravel\SanitizesInput;
+use App\User;
+use App\Http\Requests\Request;
 
 class UpdatePasswordRequest extends FormRequest
 {
-    use SanitizesInput;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,7 +24,9 @@ class UpdatePasswordRequest extends FormRequest
      */
     public function rules()
     {
-        return array_only(Enduser::rules($this->route('enduser')), ['password']);
+        $rules = [];
+        $rules['password'] = ['required', 'string', 'min:6', 'max_db_string', 'confirmed'];
+        return $rules;
     }
 
     /**
@@ -37,6 +36,7 @@ class UpdatePasswordRequest extends FormRequest
      */
     public function filters()
     {
-        return array_only(Enduser::filters($this->route('enduser')), ['password']);
+        $filters = [];
+        return $filters;
     }
 }

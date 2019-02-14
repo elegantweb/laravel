@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web\Admin\Panel;
 
-use App\Models\User;
-use App\DataTables\UsersDataTable;
-use App\Http\Requests\User\UpdateRequest;
-use App\Http\Requests\User\UpdatePasswordRequest;
+use App\User;
+use App\Http\DataTables\Admin\UsersDataTable;
+use App\Http\Requests\Admin\User\UpdateRequest;
+use App\Http\Requests\Admin\User\UpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
