@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\Enduser;
 use App\Http\DataTables\Admin\EndusersDataTable;
-use App\Http\Requests\Admin\EnduserStoreRequest;
-use App\Http\Requests\Admin\EnduserUpdateRequest;
-use App\Http\Requests\Admin\EnduserUpdatePasswordRequest;
+use App\Http\Requests\Web\Admin\EnduserStoreRequest;
+use App\Http\Requests\Web\Admin\EnduserUpdateRequest;
+use App\Http\Requests\Web\Admin\EnduserUpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

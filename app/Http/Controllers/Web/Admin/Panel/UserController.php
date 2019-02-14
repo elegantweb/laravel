@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\User;
 use App\Http\DataTables\Admin\UsersDataTable;
-use App\Http\Requests\Admin\UserUpdateRequest;
-use App\Http\Requests\Admin\UserUpdatePasswordRequest;
+use App\Http\Requests\Web\Admin\UserUpdateRequest;
+use App\Http\Requests\Web\Admin\UserUpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

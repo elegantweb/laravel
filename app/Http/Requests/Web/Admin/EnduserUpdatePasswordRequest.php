@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Enduser;
+namespace App\Http\Requests\Web\Admin;
 
 use App\Enduser;
 use App\Http\Requests\Request;
 
-class UpdatePasswordRequest extends FormRequest
+class EnduserUpdatePasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

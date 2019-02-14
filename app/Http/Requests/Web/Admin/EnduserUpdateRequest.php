@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\Enduser;
+namespace App\Http\Requests\Web\Admin;
 
 use App\Enduser;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class EnduserUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

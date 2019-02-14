@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\User;
+namespace App\Http\Requests\Web\Admin;
 
 use App\User;
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class UserUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
