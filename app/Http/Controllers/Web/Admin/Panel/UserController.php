@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\User;
 use App\Http\DataTables\Admin\UsersDataTable;
-use App\Http\Requests\Admin\User\UpdateRequest;
-use App\Http\Requests\Admin\User\UpdatePasswordRequest;
+use App\Http\Requests\Admin\UserUpdateRequest;
+use App\Http\Requests\Admin\UserUpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,7 +26,7 @@ class UserController extends Controller
         return view('admin.panel.users.edit', compact('user'));
     }
 
-    public function update(UpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
         $user->update($request->validated());
 
@@ -34,7 +34,7 @@ class UserController extends Controller
                          ->with('status:success', 'User successfully updated.');
     }
 
-    public function updatePassword(UpdatePasswordRequest $request, User $user)
+    public function updatePassword(UserUpdatePasswordRequest $request, User $user)
     {
         $input = $request->validated();
 

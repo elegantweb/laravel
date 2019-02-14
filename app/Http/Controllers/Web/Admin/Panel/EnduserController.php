@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Web\Admin\Panel;
 
 use App\Enduser;
 use App\Http\DataTables\Admin\EndusersDataTable;
-use App\Http\Requests\Admin\Enduser\StoreRequest;
-use App\Http\Requests\Admin\Enduser\UpdateRequest;
-use App\Http\Requests\Admin\Enduser\UpdatePasswordRequest;
+use App\Http\Requests\Admin\EnduserStoreRequest;
+use App\Http\Requests\Admin\EnduserUpdateRequest;
+use App\Http\Requests\Admin\EnduserUpdatePasswordRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,7 @@ class EnduserController extends Controller
         return view('admin.panel.endusers.create');
     }
 
-    public function store(StoreRequest $request)
+    public function store(EnduserStoreRequest $request)
     {
         $enduser = Enduser::create($request->validated());
 
@@ -40,7 +40,7 @@ class EnduserController extends Controller
         return view('admin.panel.endusers.edit', compact('enduser'));
     }
 
-    public function update(UpdateRequest $request, Enduser $enduser)
+    public function update(EnduserUpdateRequest $request, Enduser $enduser)
     {
         $enduser->update($request->validated());
 
@@ -48,7 +48,7 @@ class EnduserController extends Controller
                          ->with('status:success', 'User successfully updated.');
     }
 
-    public function updatePassword(UpdatePasswordRequest $request, Enduser $enduser)
+    public function updatePassword(EnduserUpdatePasswordRequest $request, Enduser $enduser)
     {
         $input = $request->validated();
 
