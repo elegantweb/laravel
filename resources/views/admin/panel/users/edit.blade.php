@@ -1,6 +1,6 @@
 @extends('admin::panel.layouts.base')
 
-@section('title', "Users")
+@section('title', 'Users')
 
 @section('content')
 @component('admin::components.box')
