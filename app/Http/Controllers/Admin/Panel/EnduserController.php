@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Admin\Panel;
+namespace App\Http\Controllers\Admin\Panel;
 
 use App\Enduser;
 use App\Http\DataTables\Admin\EndusersDataTable;

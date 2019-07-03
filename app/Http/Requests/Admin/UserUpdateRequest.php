@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Web\Admin;
+namespace App\Http\Requests\Admin;
 
-use App\Enduser;
+use App\User;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 
-class EnduserUpdateRequest extends Request
+class UserUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class EnduserUpdateRequest extends Request
         $rules = [];
         $rules['name'] = ['required', 'string', 'max_db_string'];
         $rules['email'] = ['required', 'email', 'max_db_string'];
-        $rules['email'][] = Rule::unique((new Enduser)->getTable())->ignore($this->route('enduser'));
+        $rules['email'][] = Rule::unique((new User)->getTable())->ignore($this->route('user'));
         return $rules;
     }
 

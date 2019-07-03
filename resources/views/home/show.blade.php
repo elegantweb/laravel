@@ -1,4 +1,4 @@
-@extends('front.layouts.base')
+@extends('layouts.base')
 
 @section('title', 'Description')
 

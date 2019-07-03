@@ -22,11 +22,4 @@ Route::group([
 
 });
 
-Route::group([
-    'middleware' => ['front'],
-    'namespace' => 'Front',
-], function () {
-
-    require('web.front.php');
-
-});
+Route::get('/', 'HomeController@show')->name('home');

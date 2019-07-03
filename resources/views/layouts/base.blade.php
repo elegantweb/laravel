@@ -8,7 +8,7 @@
     @stack('styles')
 </head>
 <body>
-    @include('front.partials.body')
+    @include('partials.body')
     <script src="{{ cdn(mix('js/front.js')) }}"></script>
     @stack('scripts')
 </body>

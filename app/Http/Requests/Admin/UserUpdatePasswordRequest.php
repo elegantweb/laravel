@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Web\Admin;
+namespace App\Http\Requests\Admin;
 
-use App\Enduser;
 use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 
-class EnduserStoreRequest extends Request
+class UserUpdatePasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +24,6 @@ class EnduserStoreRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', 'string', 'max_db_string'];
-        $rules['email'] = ['required', 'email', 'max_db_string'];
-        $rules['email'][] = Rule::unique((new Enduser)->getTable());
         $rules['password'] = ['required', 'string', 'min:6', 'max_db_string', 'confirmed'];
         return $rules;
     }
@@ -41,8 +36,6 @@ class EnduserStoreRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = ['trim', 'capitalize', 'escape'];
-        $filters['email'] = ['trim', 'lowercase'];
         return $filters;
     }
 }
