@@ -24,7 +24,7 @@ class UserUpdatePasswordRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['password'] = ['required', 'string', 'min:6', 'max_db_string', 'confirmed'];
+        $rules['password'] = ['required', 'string', 'min:8', 'max_db_string', 'confirmed'];
         return $rules;
     }
 

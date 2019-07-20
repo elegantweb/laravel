@@ -12,7 +12,7 @@ $.ajaxSetup({
 
 $.extend(true, $.fn.dataTable.defaults, {
     processing: true,
-    buttons: [],
+    autoWidth: false,
 	dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
 		 "<'table-responsive'tr>" +
 		 "<'row'<'col-sm-5'i><'col-sm-7'p>>"

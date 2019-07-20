@@ -4,10 +4,6 @@
 
 /* DataTables */
 
-table.dataTable {
-    width: 100% !important;
-}
-
 table.dataTable thead > tr > th {
     white-space: nowrap;
 }
