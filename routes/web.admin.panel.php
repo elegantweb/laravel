@@ -5,5 +5,5 @@ Route::patch('users/{user}/password', 'UserController@updatePassword')->name('us
 Route::resource('users', 'UserController')->except(['show', 'create', 'store', 'destroy']);
 
 Route::get('endusers/datatables', 'EnduserController@datatables')->name('endusers.datatables');
-Route::put('endusers/{customer}/password', 'EnduserController@updatePassword')->name('endusers.update.password');
+Route::patch('endusers/{customer}/password', 'EnduserController@updatePassword')->name('endusers.update.password');
 Route::resource('endusers', 'EnduserController');
