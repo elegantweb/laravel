@@ -65,7 +65,7 @@ class EnduserController extends Controller
     {
         $enduser->delete();
 
-        return redirect()->back()
+        return redirect()->route('admin.endusers.index')
                          ->with('status:success', 'User successfully removed.');
     }
 }
