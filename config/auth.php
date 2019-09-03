@@ -49,6 +49,7 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'endusers',
+            'hash' => false,
         ],
     ],
 

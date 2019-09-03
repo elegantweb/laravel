@@ -54,17 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Assets URL
-    |--------------------------------------------------------------------------
-    |
-    | This URL is used by to generate assets URL regradless
-    | of application url, usefull when using CDNs.
-    |
-    */
-
-   'assets_url' => env('APP_ASSETS_URL', 'http://localhost'),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
