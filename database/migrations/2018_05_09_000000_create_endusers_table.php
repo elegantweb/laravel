@@ -14,7 +14,7 @@ class CreateEndusersTable extends Migration
     public function up()
     {
         Schema::create('endusers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
