@@ -41,7 +41,7 @@ class EnduserStoreRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = ['trim', 'capitalize', 'escape'];
+        $filters['name'] = ['trim', 'capitalize'];
         $filters['email'] = ['trim', 'lowercase'];
         return $filters;
     }

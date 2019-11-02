@@ -12,7 +12,7 @@
 
     <div class="form-group">
         <label for="id" class="control-label">ID</label>
-        <input id="id" type="text" class="form-control" value="{{ $enduser->id }}" readonly>
+        <input id="id" type="text" class="form-control" value="{{ $enduser->id }}" disabled>
     </div>
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
