@@ -6,25 +6,25 @@
 @component('admin::components.box')
 @slot('title', 'List')
 @slot('body')
-    <table class="table table-bordered" id="users-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created at</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    </table>
+<table class="table table-bordered" id="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created at</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+</table>
 @endslot
 @endcomponent
 @endsection
 
 @push('scripts')
 <script>
-var $usersTable = $('#users-table');
-var usersDataTable = $usersTable.DataTable({
+var $table = $('#table');
+var dataTable = $table.DataTable({
     serverSide: true,
     ajax: '{{ route('admin.users.datatables') }}',
     order: [[0, 'desc']],
