@@ -32,7 +32,7 @@ class EnduserController extends Controller
         $enduser = Enduser::create($request->validated());
 
         return redirect()->route('admin.endusers.edit', [$enduser])
-                         ->with('status:success', 'User successfully saved.');
+                         ->with('status:success', 'User successfully stored.');
     }
 
     public function edit(Enduser $enduser)
