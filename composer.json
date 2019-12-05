@@ -8,6 +8,7 @@
         "elegantweb/laravel-admin": "^1.0",
         "elegantweb/laravel-common": "^2.0",
         "elegantweb/laravel-datatables": "^2.0",
+        "elegantweb/laravel-transactional-events": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
