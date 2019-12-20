@@ -26,11 +26,4 @@ class Enduser extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * @var array
-     */
-    protected $dates = [
-        'disabled_at',
-    ];
 }
