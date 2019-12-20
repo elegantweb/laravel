@@ -73,12 +73,12 @@ return [
     'providers' => [
         'endusers' => [
             'driver' => 'eloquent',
-            'model' => App\Enduser::class,
+            'model' => App\Models\Enduser::class,
         ],
 
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
     ],
 

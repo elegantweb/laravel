@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Models\User;
 use App\Http\DataTables\Admin\UserDataTable;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use App\Http\Requests\Admin\UserUpdatePasswordRequest;

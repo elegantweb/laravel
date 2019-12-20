@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Enduser;
+use App\Models\Enduser;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 

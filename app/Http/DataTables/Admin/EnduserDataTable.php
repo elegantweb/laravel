@@ -2,7 +2,7 @@
 
 namespace App\Http\DataTables\Admin;
 
-use App\Enduser;
+use App\Models\Enduser;
 use Elegant\DataTables\Model;
 
 class EnduserDataTable extends Model

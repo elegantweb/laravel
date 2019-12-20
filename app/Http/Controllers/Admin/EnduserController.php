@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enduser;
+use App\Models\Enduser;
 use App\Http\DataTables\Admin\EnduserDataTable;
 use App\Http\Requests\Admin\EnduserStoreRequest;
 use App\Http\Requests\Admin\EnduserUpdateRequest;

@@ -2,7 +2,7 @@
 
 namespace App\Http\DataTables\Admin;
 
-use App\User;
+use App\Models\User;
 use Elegant\DataTables\Model;
 
 class UserDataTable extends Model

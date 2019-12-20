@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\User;
+use App\Models\User;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 

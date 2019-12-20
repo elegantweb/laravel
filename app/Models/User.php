@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Enduser extends Authenticatable
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -25,12 +25,5 @@ class Enduser extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $dates = [
-        'disabled_at',
     ];
 }
