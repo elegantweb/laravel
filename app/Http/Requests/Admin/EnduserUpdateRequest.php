@@ -26,9 +26,8 @@ class EnduserUpdateRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', 'string', 'max_db_string'];
-        $rules['email'] = ['required', 'email', 'max_db_string'];
-        $rules['email'][] = Rule::unique((new Enduser)->getTable())->ignore($this->route('enduser'));
+        $rules['name'] = ['required', ...$this->route('enduser')->getRules('name')];
+        $rules['email'] = ['required', ...$this->route('enduser')->getRules('email')];
         return $rules;
     }
 
@@ -40,8 +39,8 @@ class EnduserUpdateRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = ['trim', 'capitalize'];
-        $filters['email'] = ['trim', 'lowercase'];
+        $filters['name'] = [...$this->route('enduser')->getFilters('name')];
+        $filters['email'] = [...$this->route('enduser')->getFilters('email')];
         return $filters;
     }
 }

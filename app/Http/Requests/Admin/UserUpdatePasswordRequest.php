@@ -24,7 +24,7 @@ class UserUpdatePasswordRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['password'] = ['required', 'string', 'min:8', 'max_db_string', 'confirmed'];
+        $rules['password'] = ['required', ...$this->route('user')->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -36,6 +36,7 @@ class UserUpdatePasswordRequest extends Request
     public function filters()
     {
         $filters = [];
+        $filters['password'] = [...$this->route('user')->getFilters('password')];
         return $filters;
     }
 }

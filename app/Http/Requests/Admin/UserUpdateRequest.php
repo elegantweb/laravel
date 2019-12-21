@@ -26,9 +26,8 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', 'string', 'max_db_string'];
-        $rules['email'] = ['required', 'email', 'max_db_string'];
-        $rules['email'][] = Rule::unique((new User)->getTable())->ignore($this->route('user'));
+        $rules['name'] = ['required', ...$this->route('user')->getRules('name')];
+        $rules['email'] = ['required', ...$this->route('user')->getRules('email')];
         return $rules;
     }
 
@@ -40,8 +39,8 @@ class UserUpdateRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = ['trim', 'capitalize'];
-        $filters['email'] = ['trim', 'lowercase'];
+        $filters['name'] = [...$this->route('user')->getFilters('name')];
+        $filters['email'] = [...$this->route('user')->getFilters('email')];
         return $filters;
     }
 }
