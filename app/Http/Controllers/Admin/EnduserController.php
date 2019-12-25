@@ -29,7 +29,12 @@ class EnduserController extends Controller
 
     public function store(EnduserStoreRequest $request)
     {
-        $enduser = Enduser::create($request->validated());
+        $input = $request->validated();
+        
+        $attributes = $input;
+        $attributes['password'] = bcrypt($input['password']);
+        
+        $enduser = Enduser::create($attributes);
 
         return redirect()->route('admin.endusers.edit', [$enduser])
                          ->with('status:success', 'User successfully stored.');
@@ -52,7 +57,7 @@ class EnduserController extends Controller
     {
         $input = $request->validated();
 
-        $attributes = [];
+        $attributes = $input;
         $attributes['password'] = bcrypt($input['password']);
 
         $enduser->update($attributes);
