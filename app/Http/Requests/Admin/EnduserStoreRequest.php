@@ -26,9 +26,9 @@ class EnduserStoreRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', ...Enduser::getRules('name')];
-        $rules['email'] = ['required', ...Enduser::getRules('email')];
-        $rules['password'] = ['required', ...Enduser::getRules('password'), 'confirmed'];
+        $rules['name'] = ['required', ...(new Enduser())->getRules('name')];
+        $rules['email'] = ['required', ...(new Enduser())->getRules('email')];
+        $rules['password'] = ['required', ...(new Enduser())->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -40,9 +40,9 @@ class EnduserStoreRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = [...Enduser::getFilters('name')];
-        $filters['email'] = [...Enduser::getFilters('email')];
-        $filters['password'] = [...Enduser::getFilters('password')];
+        $filters['name'] = [...(new Enduser())->getFilters('name')];
+        $filters['email'] = [...(new Enduser())->getFilters('email')];
+        $filters['password'] = [...(new Enduser())->getFilters('password')];
         return $filters;
     }
 }
