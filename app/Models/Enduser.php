@@ -40,7 +40,7 @@ class Enduser extends Authenticatable
         $rules = [];
         $rules['name'] = ['string', 'max_db_string'];
         $rules['email'] = ['email', 'max_db_string'];
-        if ($this->exists()) $rules['email'][] = Rule::unique(self::class)->ignore($this);
+        if ($this->exists) $rules['email'][] = Rule::unique(self::class)->ignore($this);
         else $rules['email'][] = Rule::unique(self::class);
         $rules['password'] = ['string', 'min:8', 'max_db_string'];
         return $rules;
