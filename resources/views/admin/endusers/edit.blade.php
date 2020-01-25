@@ -11,12 +11,12 @@
     {{ method_field('PATCH') }}
 
     <div class="form-group">
-        <label for="id" class="control-label">ID</label>
+        <label for="id">ID</label>
         <input id="id" type="text" class="form-control" value="{{ $enduser->id }}" disabled>
     </div>
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <label for="name" class="control-label">Name</label>
+        <label for="name">Name</label>
         <input id="name" type="text" class="form-control"
                name="name" value="{{ old('name', $enduser->name) }}" required>
         @if ($errors->has('name'))
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-        <label for="email" class="control-label">Email</label>
+        <label for="email">Email</label>
         <input id="email" type="email" class="form-control"
                name="email" value="{{ old('email', $enduser->email) }}" required>
         @if ($errors->has('email'))
@@ -53,7 +53,7 @@
     {{ method_field('PATCH') }}
 
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-        <label for="password" class="control-label">Password</label>
+        <label for="password">Password</label>
         <input id="password" type="password" class="form-control" name="password" required>
         @if ($errors->has('password'))
             <span class="help-block">
@@ -63,7 +63,7 @@
     </div>
 
     <div class="form-group">
-        <label for="password-confirm" class="control-label">Confirm Password</label>
+        <label for="password-confirm">Confirm Password</label>
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
     </div>
 </form>
