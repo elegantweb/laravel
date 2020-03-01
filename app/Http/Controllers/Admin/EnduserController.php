@@ -36,7 +36,7 @@ class EnduserController extends Controller
         
         $enduser = Enduser::create($attributes);
 
-        return redirect()->route('admin.endusers.edit', [$enduser])
+        return redirect()->route('admin.endusers.edit', $enduser)
                          ->with('status:success', 'User successfully stored.');
     }
 
