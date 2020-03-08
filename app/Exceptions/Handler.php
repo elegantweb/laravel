@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -35,11 +34,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        if ($exception instanceof QueryException and 23000 == $exception->getCode()) {
-            return;
-        } else {
-            parent::report($exception);
-        }
+        parent::report($exception);
     }
 
     /**
@@ -51,20 +46,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof QueryException && !config('app.debug')) {
-            return $this->renderQueryException($exception);
-        } else {
-            return parent::render($request, $exception);
-        }
-    }
-
-    protected function renderQueryException($exception)
-    {
-        switch ($exception->getCode()) {
-            case 23000:
-                return redirect()->back()->with('status:error', 'Cannot delete or update a parent row.');
-            default:
-                return redirect()->back()->with('status:error', 'Database error.');
-        }
+        return parent::render($request, $exception);
     }
 }
