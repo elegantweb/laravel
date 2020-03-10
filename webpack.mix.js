@@ -19,5 +19,11 @@ mix.version();
 mix.options({
     cssNano: {
         discardComments: { removeAll: true }
+    },
+    terser: {
+        extractComments: false,
+        terserOptions: {
+            output: { comments: false }
+        }
     }
 });
