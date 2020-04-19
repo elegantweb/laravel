@@ -1,10 +1,8 @@
 /* Fix jQuery */
 
-$.ajaxSetup({
-    beforeSend: function (xhr) {
-        if ($(`<a href="${this.url}">`).get(0).origin === window.location.origin) {
-            xhr.setRequestHeader('X-CSRF-TOKEN', document.head.querySelector('meta[name="csrf-token"]').content)
-        }
+$.ajaxPrefilter(function (options, originalOptions, xhr) {
+    if (!['get', 'head', 'options'].includes(options.type.toLowerCase()) && !options.crossDomain) {
+        xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
     }
 });
 
