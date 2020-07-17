@@ -1,5 +1,4 @@
 {
-    "private": true,
     "type": "project",
     "require": {
         "php": "^7.4",
