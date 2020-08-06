@@ -18,7 +18,6 @@ return [
 
         'routes' => [
             'prefix' => 'auth',
-            'namespace' => 'App\Http\Controllers\Web\Admin\Auth',
             'middleware' => ['admin.guest'],
         ],
     ],
@@ -29,7 +28,6 @@ return [
 
         'routes' => [
             'prefix' => '',
-            'namespace' => 'App\Http\Controllers\Web\Admin\Panel',
             'middleware' => ['admin.auth'],
         ],
     ],
