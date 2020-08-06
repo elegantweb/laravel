@@ -35,25 +35,43 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        $this->mapFrontRoutes();
 
-        $this->mapWebRoutes();
+        $this->mapAdminRoutes();
+
+        $this->mapApiRoutes();
 
         //
     }
 
     /**
-     * Define the "web" routes for the application.
+     * Define the "front" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapFrontRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+        Route::middleware('front')
+            ->namespace("{$this->namespace}\Front")
+            ->group(base_path('routes/front.php'));
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::name('admin.')
+            ->prefix(config('admin.routes.prefix'))
+            ->middleware(config('admin.routes.middleware'))
+            ->namespace("{$this->namespace}\Admin")
+            ->group(base_path('routes/admin.php'));
     }
 
     /**
@@ -65,9 +83,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+        Route::name('api.')
+            ->prefix('api')
+            ->middleware('api')
+            ->namespace("{$this->namespace}\Api")
+            ->group(base_path('routes/api.php'));
     }
 }

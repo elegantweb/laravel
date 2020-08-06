@@ -5,6 +5,6 @@ Route::group([
     'middleware' => config('admin.panel.routes.middleware'),
 ], function () {
 
-    require('web.admin.panel.php');
+    require('admin.panel.php');
 
 });

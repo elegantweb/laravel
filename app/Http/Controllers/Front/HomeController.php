@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 class HomeController extends Controller
 {
     public function show()
     {
-        return view('home.show');
+        return view('front.home.show');
     }
 }
