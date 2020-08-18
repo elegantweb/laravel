@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\Enduser;
+use App\Models\Client;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 
-class EnduserUpdateRequest extends Request
+class ClientStoreRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,9 @@ class EnduserUpdateRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', ...$this->route('enduser')->getRules('name')];
-        $rules['email'] = ['required', ...$this->route('enduser')->getRules('email')];
+        $rules['name'] = ['required', ...(new Client())->getRules('name')];
+        $rules['email'] = ['required', ...(new Client())->getRules('email')];
+        $rules['password'] = ['required', ...(new Client())->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -39,8 +40,9 @@ class EnduserUpdateRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = [...$this->route('enduser')->getFilters('name')];
-        $filters['email'] = [...$this->route('enduser')->getFilters('email')];
+        $filters['name'] = [...(new Client())->getFilters('name')];
+        $filters['email'] = [...(new Client())->getFilters('email')];
+        $filters['password'] = [...(new Client())->getFilters('password')];
         return $filters;
     }
 }

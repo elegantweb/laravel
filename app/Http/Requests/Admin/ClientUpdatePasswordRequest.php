@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\User;
 use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 
-class UserUpdateRequest extends Request
+class ClientUpdatePasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +24,7 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', ...$this->route('user')->getRules('name')];
-        $rules['email'] = ['required', ...$this->route('user')->getRules('email')];
+        $rules['password'] = ['required', ...$this->route('client')->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -39,8 +36,7 @@ class UserUpdateRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = [...$this->route('user')->getFilters('name')];
-        $filters['email'] = [...$this->route('user')->getFilters('email')];
+        $filters['password'] = [...$this->route('client')->getFilters('password')];
         return $filters;
     }
 }

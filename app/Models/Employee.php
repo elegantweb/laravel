@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Enduser extends Authenticatable
+class Employee extends Authenticatable
 {
     use Notifiable, HasFormValidation, HasFormSanitization;
 

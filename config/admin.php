@@ -14,7 +14,7 @@ return [
 
     'auth' => [
         'guard' => 'admin',
-        'password' => 'users',
+        'password' => 'employees',
 
         'routes' => [
             'prefix' => 'auth',

@@ -1,23 +1,23 @@
 @extends('admin::layouts.base')
 
-@section('title', 'Users')
+@section('title', 'Employees')
 
 @section('content')
 @component('admin::components.box')
-@slot('title', 'List')
-@slot('body')
-<table class="table table-bordered" id="table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Created at</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-</table>
-@endslot
+    @slot('title', 'List')
+    @slot('body')
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Created at</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    @endslot
 @endcomponent
 @endsection
 
@@ -26,7 +26,7 @@
 var $table = $('#table');
 var dataTable = $table.DataTable({
     serverSide: true,
-    ajax: '{{ route('admin.users.datatables') }}',
+    ajax: '{{ route('admin.employees.dataTables') }}',
     order: [[0, 'desc']],
     columns: [
         {

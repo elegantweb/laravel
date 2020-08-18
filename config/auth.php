@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'front',
-        'passwords' => 'endusers',
+        'passwords' => 'clients',
     ],
 
     /*
@@ -38,17 +38,17 @@ return [
     'guards' => [
         'front' => [
             'driver' => 'session',
-            'provider' => 'endusers',
+            'provider' => 'clients',
         ],
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'employees',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'endusers',
+            'provider' => 'clients',
             'hash' => false,
         ],
     ],
@@ -71,14 +71,14 @@ return [
     */
 
     'providers' => [
-        'endusers' => [
+        'clients' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Enduser::class,
+            'model' => App\Models\Client::class,
         ],
 
-        'users' => [
+        'employees' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Employee::class,
         ],
     ],
 
@@ -98,16 +98,16 @@ return [
     */
 
     'passwords' => [
-        'endusers' => [
-            'provider' => 'endusers',
-            'table' => 'endusers_password_resets',
+        'clients' => [
+            'provider' => 'clients',
+            'table' => 'clients_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
-        'users' => [
-            'provider' => 'users',
-            'table' => 'users_password_resets',
+        'employees' => [
+            'provider' => 'employees',
+            'table' => 'employees_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

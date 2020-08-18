@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class EnduserUpdatePasswordRequest extends Request
+class EmployeeUpdatePasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class EnduserUpdatePasswordRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['password'] = ['required', ...$this->route('enduser')->getRules('password'), 'confirmed'];
+        $rules['password'] = ['required', ...$this->route('employee')->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -36,7 +36,7 @@ class EnduserUpdatePasswordRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['password'] = [...$this->route('enduser')->getFilters('password')];
+        $filters['password'] = [...$this->route('employee')->getFilters('password')];
         return $filters;
     }
 }
