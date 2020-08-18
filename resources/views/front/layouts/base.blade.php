@@ -8,7 +8,7 @@
     @stack('styles')
 </head>
 <body>
-    @include('partials.body')
+    @include('front.partials.body')
     <script src="{{ asset(mix('js/app.js')) }}"></script>
     @stack('scripts')
 </body>

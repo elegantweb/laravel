@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEndusersTable extends Migration
+class CreateEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEndusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('endusers', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -30,6 +30,6 @@ class CreateEndusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('endusers');
+        Schema::dropIfExists('employees');
     }
 }

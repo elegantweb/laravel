@@ -1,1 +1,1 @@
-@include('partials.main')
+@include('front.partials.main')

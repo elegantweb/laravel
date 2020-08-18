@@ -3,7 +3,7 @@ version: '3'
 services:
   database:
     container_name: laravel_database
-    build: docker/database
+    build: .docker/database
     restart: unless-stopped
     volumes:
       - ./storage/database:/var/lib/mysql
@@ -20,7 +20,7 @@ services:
       - "8080:80"
   nginx:
     container_name: laravel_nginx
-    build: docker/nginx
+    build: .docker/nginx
     ports:
       - "80:80"
     restart: unless-stopped
@@ -28,7 +28,7 @@ services:
       - .:/var/www/html
   app:
     container_name: laravel_app
-    build: docker/app
+    build: .docker/app
     depends_on:
       - database
     restart: unless-stopped
