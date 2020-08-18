@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  database:
+    container_name: laravel_database
+    build: docker/database
+    restart: unless-stopped
+    volumes:
+      - ./storage/database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+  phpmyadmin:
+    container_name: laravel_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    external_links:
+      - database:db
+    ports:
+      - "8080:80"
+  nginx:
+    container_name: laravel_nginx
+    build: docker/nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+  app:
+    container_name: laravel_app
+    build: docker/app
+    depends_on:
+      - database
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    environment:
+      WAIT_HOSTS: database:3306
+      WAIT_PATHS: /var/www/html/storage/database/${DB_DATABASE}
+      WAIT_AFTER: 15
