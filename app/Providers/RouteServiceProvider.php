@@ -25,6 +25,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
 
+        Route::macro('ddd', function ($domain) {
+            return $this->namespace(sprintf('%s\Controllers', \Str::studly($domain)));
+        });
+
         parent::boot();
     }
 
@@ -54,7 +58,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapFrontRoutes()
     {
         Route::middleware('front')
-            ->namespace("{$this->namespace}\Front")
+            ->namespace("App\Front")
             ->group(base_path('routes/front.php'));
     }
 
@@ -70,7 +74,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::name('admin.')
             ->prefix(config('admin.routes.prefix'))
             ->middleware(config('admin.routes.middleware'))
-            ->namespace("{$this->namespace}\Admin")
+            ->namespace("App\Admin")
             ->group(base_path('routes/admin.php'));
     }
 
@@ -86,7 +90,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::name('api.')
             ->prefix('api')
             ->middleware('api')
-            ->namespace("{$this->namespace}\Api")
+            ->namespace("App\Api")
             ->group(base_path('routes/api.php'));
     }
 }

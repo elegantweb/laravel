@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Admin\Clients\Requests;
 
-use App\Models\Client;
 use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 
 class ClientUpdateRequest extends Request
 {

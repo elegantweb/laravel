@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\DataTables\Admin;
+namespace App\Admin\Clients\DataTables;
 
-use App\Models\Client;
+use App\Domain\Clients\Client;
 use Elegant\DataTables\Model;
 
 class ClientDataTable extends Model

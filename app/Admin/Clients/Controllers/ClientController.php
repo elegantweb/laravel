@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Admin\Clients\Controllers;
 
-use App\Models\Client;
-use App\Http\DataTables\Admin\ClientDataTable;
-use App\Http\Requests\Admin\ClientStoreRequest;
-use App\Http\Requests\Admin\ClientUpdateRequest;
-use App\Http\Requests\Admin\ClientUpdatePasswordRequest;
+use App\Domain\Clients\Client;
+use App\Admin\Clients\DataTables\ClientDataTable;
+use App\Admin\Clients\Requests\ClientStoreRequest;
+use App\Admin\Clients\Requests\ClientUpdateRequest;
+use App\Admin\Clients\Requests\ClientUpdatePasswordRequest;
+use App\Domain\Clients\Data\ClientData;
+use App\Domain\Clients\Data\ClientUpdateData;
+use App\Domain\Clients\Data\ClientUpdatePasswordData;
+use App\Domain\Clients\Jobs\ClientCreate;
+use App\Domain\Clients\Jobs\ClientUpdate;
+use App\Domain\Clients\Jobs\ClientUpdatePassword;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -29,12 +34,9 @@ class ClientController extends Controller
 
     public function store(ClientStoreRequest $request)
     {
-        $input = $request->validated();
+        $data = new ClientData($request->validated());
 
-        $attributes = $input;
-        $attributes['password'] = bcrypt($input['password']);
-
-        $client = Client::create($attributes);
+        $client = ClientCreate::dispatchNow($data);
 
         return redirect()->route('admin.clients.edit', $client)
                         ->with('status:success', 'User successfully stored.');
@@ -47,19 +49,18 @@ class ClientController extends Controller
 
     public function update(ClientUpdateRequest $request, Client $client)
     {
-        $client->update($request->validated());
+        $data = new ClientUpdateData($request->validated());
+
+        ClientUpdate::dispatchNow($client, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }
 
     public function updatePassword(ClientUpdatePasswordRequest $request, Client $client)
     {
-        $input = $request->validated();
+        $data = new ClientUpdatePasswordData($request->validated());
 
-        $attributes = $input;
-        $attributes['password'] = bcrypt($input['password']);
-
-        $client->update($attributes);
+        ClientUpdatePassword::dispatchNow($client, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }

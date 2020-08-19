@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Admin\Employees\Requests;
 
-use App\Models\Employee;
 use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 
-class EmployeeUpdateRequest extends Request
+class EmployeeUpdatePasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +24,7 @@ class EmployeeUpdateRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['name'] = ['required', ...$this->route('employee')->getRules('name')];
-        $rules['email'] = ['required', ...$this->route('employee')->getRules('email')];
+        $rules['password'] = ['required', ...$this->route('employee')->getRules('password'), 'confirmed'];
         return $rules;
     }
 
@@ -39,8 +36,7 @@ class EmployeeUpdateRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['name'] = [...$this->route('employee')->getFilters('name')];
-        $filters['email'] = [...$this->route('employee')->getFilters('email')];
+        $filters['password'] = [...$this->route('employee')->getFilters('password')];
         return $filters;
     }
 }

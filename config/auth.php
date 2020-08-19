@@ -73,12 +73,12 @@ return [
     'providers' => [
         'clients' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Client::class,
+            'model' => App\Domain\Clients\Client::class,
         ],
 
         'employees' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Employee::class,
+            'model' => App\Domain\Employees\Employee::class,
         ],
     ],
 

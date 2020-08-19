@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Clients;
 
 use Elegant\Common\Models\HasFormValidation;
 use Elegant\Common\Models\HasFormSanitization;
@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Authenticatable
+class Client extends Authenticatable
 {
     use Notifiable, HasFormValidation, HasFormSanitization;
 

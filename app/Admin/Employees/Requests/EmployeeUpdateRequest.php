@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Admin\Employees\Requests;
 
 use App\Http\Requests\Request;
 
-class EmployeeUpdatePasswordRequest extends Request
+class EmployeeUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class EmployeeUpdatePasswordRequest extends Request
     public function rules()
     {
         $rules = [];
-        $rules['password'] = ['required', ...$this->route('employee')->getRules('password'), 'confirmed'];
+        $rules['name'] = ['required', ...$this->route('employee')->getRules('name')];
+        $rules['email'] = ['required', ...$this->route('employee')->getRules('email')];
         return $rules;
     }
 
@@ -36,7 +37,8 @@ class EmployeeUpdatePasswordRequest extends Request
     public function filters()
     {
         $filters = [];
-        $filters['password'] = [...$this->route('employee')->getFilters('password')];
+        $filters['name'] = [...$this->route('employee')->getFilters('name')];
+        $filters['email'] = [...$this->route('employee')->getFilters('email')];
         return $filters;
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Employee;
+use App\Domain\Employees\Employee;
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class EmployeesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

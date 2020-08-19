@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Admin\Employees\Controllers;
 
-use App\Models\Employee;
-use App\Http\DataTables\Admin\EmployeeDataTable;
-use App\Http\Requests\Admin\EmployeeUpdateRequest;
-use App\Http\Requests\Admin\EmployeeUpdatePasswordRequest;
+use App\Domain\Employees\Employee;
+use App\Admin\Employees\DataTables\EmployeeDataTable;
+use App\Admin\Employees\Requests\EmployeeUpdateRequest;
+use App\Admin\Employees\Requests\EmployeeUpdatePasswordRequest;
+use App\Domain\Employees\Data\EmployeeUpdateData;
+use App\Domain\Employees\Data\EmployeeUpdatePasswordData;
+use App\Domain\Employees\Jobs\EmployeeUpdate;
+use App\Domain\Employees\Jobs\EmployeeUpdatePassword;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -28,19 +31,18 @@ class EmployeeController extends Controller
 
     public function update(EmployeeUpdateRequest $request, Employee $employee)
     {
-        $employee->update($request->validated());
+        $data = new EmployeeUpdateData($request->validated());
+
+        EmployeeUpdate::dispatchNow($employee, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }
 
     public function updatePassword(EmployeeUpdatePasswordRequest $request, Employee $employee)
     {
-        $input = $request->validated();
+        $data = new EmployeeUpdatePasswordData($request->validated());
 
-        $attributes = [];
-        $attributes['password'] = bcrypt($input['password']);
-
-        $employee->update($attributes);
+        EmployeeUpdatePassword::dispatchNow($employee, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\DataTables\Admin;
+namespace App\Admin\Employees\DataTables;
 
-use App\Models\Employee;
+use App\Domain\Employees\Employee;
 use Elegant\DataTables\Model;
 
 class EmployeeDataTable extends Model
