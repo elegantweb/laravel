@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * If specified, this namespace is automatically applied to your controller routes.
-     *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = null;
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
@@ -27,10 +18,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-
-        Route::macro('ddd', function ($domain) {
-            return $this->namespace(sprintf('%s\Controllers', \Str::studly($domain)));
-        });
 
         $this->routes(function () {
             $this->map();
@@ -63,7 +50,6 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapFrontRoutes()
     {
         Route::middleware('front')
-            ->namespace("App\Front")
             ->group(base_path('routes/front.php'));
     }
 
@@ -79,7 +65,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::name('admin.')
             ->prefix(config('admin.routes.prefix'))
             ->middleware(config('admin.routes.middleware'))
-            ->namespace("App\Admin")
             ->group(base_path('routes/admin.php'));
     }
 
@@ -95,7 +80,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::name('api.')
             ->prefix('api')
             ->middleware('api')
-            ->namespace("App\Api")
             ->group(base_path('routes/api.php'));
     }
 
