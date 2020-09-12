@@ -1,7 +1,5 @@
 <?php
 
-Route::ddd('pages')->group(function () {
+use App\Front\Pages\Controllers\HomeController;
 
-    Route::get('/', 'HomeController@show')->name('home');
-
-});
+Route::get('/', [HomeController::class, 'show'])->name('home');
