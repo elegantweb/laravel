@@ -2,7 +2,7 @@
 
 namespace App\Admin\Employees\DataTables;
 
-use App\Domain\Employees\Employee;
+use App\Domain\Employees\Models\Employee;
 use Elegant\DataTables\Model;
 
 class EmployeeDataTable extends Model

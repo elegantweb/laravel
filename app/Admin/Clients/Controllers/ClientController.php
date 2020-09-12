@@ -2,7 +2,7 @@
 
 namespace App\Admin\Clients\Controllers;
 
-use App\Domain\Clients\Client;
+use App\Domain\Clients\Models\Client;
 use App\Admin\Clients\DataTables\ClientDataTable;
 use App\Admin\Clients\Requests\ClientStoreRequest;
 use App\Admin\Clients\Requests\ClientUpdateRequest;

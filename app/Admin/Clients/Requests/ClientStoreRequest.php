@@ -2,7 +2,7 @@
 
 namespace App\Admin\Clients\Requests;
 
-use App\Domain\Clients\Client;
+use App\Domain\Clients\Models\Client;
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
 

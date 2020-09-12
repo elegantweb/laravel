@@ -10,7 +10,7 @@ class TrustProxies extends Middleware
     /**
      * The trusted proxies for this application.
      *
-     * @var array|string
+     * @var array|string|null
      */
     protected $proxies = [
         '127.0.0.1',
@@ -19,7 +19,7 @@ class TrustProxies extends Middleware
     /**
      * The headers that should be used to detect proxies.
      *
-     * @var array
+     * @var int
      */
     protected $headers = Request::HEADER_X_FORWARDED_ALL;
 

@@ -2,7 +2,7 @@
 
 namespace App\Domain\Clients\Jobs;
 
-use App\Domain\Clients\Client;
+use App\Domain\Clients\Models\Client;
 use App\Domain\Clients\Data\ClientData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

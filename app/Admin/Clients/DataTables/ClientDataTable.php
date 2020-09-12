@@ -2,7 +2,7 @@
 
 namespace App\Admin\Clients\DataTables;
 
-use App\Domain\Clients\Client;
+use App\Domain\Clients\Models\Client;
 use Elegant\DataTables\Model;
 
 class ClientDataTable extends Model

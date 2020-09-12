@@ -35,6 +35,10 @@ div.table-responsive > table.dataTable {
 
 /* Utils */
 
+.table-layout-fixed {
+    table-layout: fixed !important;
+}
+
 .display-inline {
     display: inline !important;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Employees\Controllers;
 
-use App\Domain\Employees\Employee;
+use App\Domain\Employees\Models\Employee;
 use App\Admin\Employees\DataTables\EmployeeDataTable;
 use App\Admin\Employees\Requests\EmployeeUpdateRequest;
 use App\Admin\Employees\Requests\EmployeeUpdatePasswordRequest;

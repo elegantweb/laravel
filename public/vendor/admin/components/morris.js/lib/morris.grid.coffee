@@ -96,7 +96,6 @@ class Morris.Grid extends Morris.EventEmitter
   gridDefaults:
     dateFormat: null
     axes: true
-    freePosition: false
     grid: true
     gridLineColor: '#aaa'
     gridStrokeWidth: 0.5
@@ -106,7 +105,6 @@ class Morris.Grid extends Morris.EventEmitter
     gridTextWeight: 'normal'
     hideHover: false
     yLabelFormat: null
-    yLabelAlign: 'right'
     xLabelAngle: 0
     numLines: 5
     padding: 25
@@ -165,10 +163,6 @@ class Morris.Grid extends Morris.EventEmitter
           ret.label = @options.dateFormat ret.x
         else if typeof ret.label is 'number'
           ret.label = new Date(ret.label).toString()
-      else if @options.freePosition
-        ret.x = parseFloat(row[@options.xkey])
-        if @options.xLabelFormat
-          ret.label = @options.xLabelFormat ret
       else
         ret.x = index
         if @options.xLabelFormat
@@ -178,7 +172,7 @@ class Morris.Grid extends Morris.EventEmitter
         yval = row[ykey]
         yval = parseFloat(yval) if typeof yval is 'string'
         yval = null if yval? and typeof yval isnt 'number'
-        if yval? and @hasToShow(idx)
+        if yval?
           if @cumulative
             total += yval
           else
@@ -193,7 +187,7 @@ class Morris.Grid extends Morris.EventEmitter
         yval
       ret
 
-    if @options.parseTime or @options.freePosition
+    if @options.parseTime
       @data = @data.sort (a, b) -> (a.x > b.x) - (b.x > a.x)
 
     # calculate horizontal range of the graph
@@ -203,17 +197,11 @@ class Morris.Grid extends Morris.EventEmitter
     @events = []
     if @options.events.length > 0
       if @options.parseTime
-        for e in @options.events
-          if e instanceof Array
-            [from, to] = e
-            @events.push([Morris.parseDate(from), Morris.parseDate(to)])
-          else
-            @events.push(Morris.parseDate(e))
+        @events = (Morris.parseDate(e) for e in @options.events)
       else
         @events = @options.events
-      flatEvents = $.map @events, (e) -> e
-      @xmax = Math.max(@xmax, Math.max(flatEvents...))
-      @xmin = Math.min(@xmin, Math.min(flatEvents...))
+      @xmax = Math.max(@xmax, Math.max(@events...))
+      @xmin = Math.min(@xmin, Math.min(@events...))
 
     if @xmin is @xmax
       @xmin -= 1
@@ -298,67 +286,25 @@ class Morris.Grid extends Morris.EventEmitter
       if @options.axes in [true, 'both', 'y']
         yLabelWidths = for gridLine in @grid
           @measureText(@yAxisFormat(gridLine)).width
-
-        if not @options.horizontal
-          @left += Math.max(yLabelWidths...)
-        else
-          @bottom -= Math.max(yLabelWidths...)
-
+        @left += Math.max(yLabelWidths...)
       if @options.axes in [true, 'both', 'x']
-        if not @options.horizontal
-          angle = -@options.xLabelAngle
-        else
-          angle = -90
-
         bottomOffsets = for i in [0...@data.length]
-          @measureText(@data[i].label, angle).height
-
-        if not @options.horizontal
-          @bottom -= Math.max(bottomOffsets...)
-        else
-          @left += Math.max(bottomOffsets...)
-
+          @measureText(@data[i].text, -@options.xLabelAngle).height
+        @bottom -= Math.max(bottomOffsets...)
       @width = Math.max(1, @right - @left)
       @height = Math.max(1, @bottom - @top)
-
-      if not @options.horizontal
-        @dx = @width / (@xmax - @xmin)
-        @dy = @height / (@ymax - @ymin)
-
-        @yStart = @bottom
-        @yEnd = @top
-        @xStart = @left
-        @xEnd = @right
-
-        @xSize = @width
-        @ySize = @height
-      else
-        @dx = @height / (@xmax - @xmin)
-        @dy = @width / (@ymax - @ymin)
-
-        @yStart = @left
-        @yEnd = @right
-        @xStart = @top
-        @xEnd = @bottom
-
-        @xSize = @height
-        @ySize = @width
-
+      @dx = @width / (@xmax - @xmin)
+      @dy = @height / (@ymax - @ymin)
       @calc() if @calc
 
   # Quick translation helpers
   #
-  transY: (y) ->
-    if not @options.horizontal
-      @bottom - (y - @ymin) * @dy
-    else
-      @left + (y - @ymin) * @dy
+  transY: (y) -> @bottom - (y - @ymin) * @dy
   transX: (x) ->
     if @data.length == 1
-      (@xStart + @xEnd) / 2
+      (@left + @right) / 2
     else
-      @xStart + (x - @xmin) * @dx
-
+      @left + (x - @xmin) * @dx
 
   # Draw it!
   #
@@ -386,50 +332,26 @@ class Morris.Grid extends Morris.EventEmitter
 
   # @private
   #
-  yAxisFormat: (label) -> @yLabelFormat(label, 0)
+  yAxisFormat: (label) -> @yLabelFormat(label)
 
   # @private
   #
-  yLabelFormat: (label, i) ->
+  yLabelFormat: (label) ->
     if typeof @options.yLabelFormat is 'function'
-      @options.yLabelFormat(label, i)
+      @options.yLabelFormat(label)
     else
       "#{@options.preUnits}#{Morris.commas(label)}#{@options.postUnits}"
-
-  # get the X position of a label on the Y axis
-  #
-  # @private
-  getYAxisLabelX: ->
-    if @options.yLabelAlign is 'right'
-      @left - @options.padding / 2
-    else
-      @options.padding / 2
-
 
   # draw y axis labels, horizontal lines
   #
   drawGrid: ->
     return if @options.grid is false and @options.axes not in [true, 'both', 'y']
-
-    if not @options.horizontal
-      basePos = @getYAxisLabelX()
-    else
-      basePos = @getXAxisLabelY()
-
     for lineY in @grid
-      pos = @transY(lineY)
+      y = @transY(lineY)
       if @options.axes in [true, 'both', 'y']
-        if not @options.horizontal
-          @drawYAxisLabel(basePos, pos, @yAxisFormat(lineY))
-        else
-          @drawXAxisLabel(pos, basePos, @yAxisFormat(lineY))
-
+        @drawYAxisLabel(@left - @options.padding / 2, y, @yAxisFormat(lineY))
       if @options.grid
-        pos = Math.floor(pos) + 0.5
-        if not @options.horizontal
-          @drawGridLine("M#{@xStart},#{pos}H#{@xEnd}")
-        else
-          @drawGridLine("M#{pos},#{@xStart}V#{@xEnd}")
+        @drawGridLine("M#{@left},#{y}H#{@left + @width}")
 
   # draw goals horizontal lines
   #
@@ -445,59 +367,22 @@ class Morris.Grid extends Morris.EventEmitter
       @drawEvent(event, color)
 
   drawGoal: (goal, color) ->
-    y = Math.floor(@transY(goal)) + 0.5
-    if not @options.horizontal
-      path = "M#{@xStart},#{y}H#{@xEnd}"
-    else
-      path = "M#{y},#{@xStart}V#{@xEnd}"
-
-    @raphael.path(path)
+    @raphael.path("M#{@left},#{@transY(goal)}H#{@right}")
       .attr('stroke', color)
       .attr('stroke-width', @options.goalStrokeWidth)
 
   drawEvent: (event, color) ->
-    if event instanceof Array
-      [from, to] = event
-      from = Math.floor(@transX(from)) + 0.5
-      to = Math.floor(@transX(to)) + 0.5
-
-      if not @options.horizontal
-        @raphael.rect(from, @yEnd, to-from, @yStart-@yEnd)
-          .attr({ fill: color, stroke: false })
-          .toBack()
-      else
-        @raphael.rect(@yStart, from, @yEnd-@yStart, to-from)
-          .attr({ fill: color, stroke: false })
-          .toBack()
-
-    else
-      x = Math.floor(@transX(event)) + 0.5
-      if not @options.horizontal
-        path = "M#{x},#{@yStart}V#{@yEnd}"
-      else
-        path = "M#{@yStart},#{x}H#{@yEnd}"
-
-      @raphael.path(path)
-        .attr('stroke', color)
-        .attr('stroke-width', @options.eventStrokeWidth)
+    @raphael.path("M#{@transX(event)},#{@bottom}V#{@top}")
+      .attr('stroke', color)
+      .attr('stroke-width', @options.eventStrokeWidth)
 
   drawYAxisLabel: (xPos, yPos, text) ->
-    label = @raphael.text(xPos, yPos, text)
-      .attr('font-size', @options.gridTextSize)
-      .attr('font-family', @options.gridTextFamily)
-      .attr('font-weight', @options.gridTextWeight)
-      .attr('fill', @options.gridTextColor)
-    if @options.yLabelAlign == 'right'
-      label.attr('text-anchor', 'end')
-    else
-      label.attr('text-anchor', 'start')
-
-  drawXAxisLabel: (xPos, yPos, text) ->
     @raphael.text(xPos, yPos, text)
       .attr('font-size', @options.gridTextSize)
       .attr('font-family', @options.gridTextFamily)
       .attr('font-weight', @options.gridTextWeight)
       .attr('fill', @options.gridTextColor)
+      .attr('text-anchor', 'end')
 
   drawGridLine: (path) ->
     @raphael.path(path)
@@ -524,10 +409,6 @@ class Morris.Grid extends Morris.EventEmitter
     @timeoutId = null
     @raphael.setSize @el.width(), @el.height()
     @redraw()
-
-  hasToShow: (i) =>
-    @options.shown is true or @options.shown[i] is true
-
 
 # Parse a date into a javascript timestamp
 #

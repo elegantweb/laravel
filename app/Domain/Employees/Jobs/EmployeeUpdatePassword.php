@@ -2,7 +2,7 @@
 
 namespace App\Domain\Employees\Jobs;
 
-use App\Domain\Employees\Employee;
+use App\Domain\Employees\Models\Employee;
 use App\Domain\Employees\Data\EmployeeUpdatePasswordData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

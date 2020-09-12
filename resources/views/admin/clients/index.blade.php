@@ -40,7 +40,8 @@ var dataTable = $table.DataTable({
         },
         {
             data: "created_at",
-            type: "date"
+            type: "date",
+            render: $.fn.dataTable.render.intlDateTime()
         },
         {
             data: "actions",
