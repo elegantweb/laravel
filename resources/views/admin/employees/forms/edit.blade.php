@@ -6,7 +6,7 @@
     <div class="form-group">
         <label for="id">ID</label>
         <input id="id" type="text" class="form-control"
-                value="{{ $employee->id }}" disabled>
+            value="{{ $employee->id }}" disabled>
     </div>
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
