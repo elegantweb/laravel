@@ -37,18 +37,4 @@ class EventServiceProvider extends ServiceProvider
     {
         return true;
     }
-
-    /**
-     * Get the listener directories that should be used to discover events.
-     *
-     * @return array
-     */
-    protected function discoverEventsWithin()
-    {
-        return [
-            $this->app->path('Listeners'),
-            ...glob($this->app->path('Admin/*/Listeners')),
-            ...glob($this->app->path('Front/*/Listeners')),
-        ];
-    }
 }

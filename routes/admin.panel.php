@@ -1,7 +1,7 @@
 <?php
 
-use App\Admin\Clients\Controllers\ClientController;
-use App\Admin\Employees\Controllers\EmployeeController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\EmployeeController;
 
 Route::get('employees/dataTables', [EmployeeController::class, 'dataTables'])->name('employees.dataTables');
 Route::patch('employees/{employee}/password', [EmployeeController::class, 'updatePassword'])->name('employees.update.password');

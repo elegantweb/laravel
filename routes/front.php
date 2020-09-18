@@ -1,5 +1,5 @@
 <?php
 
-use App\Front\Pages\Controllers\HomeController;
+use App\Http\Controllers\Front\HomeController;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
