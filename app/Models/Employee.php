@@ -54,8 +54,8 @@ class Employee extends Authenticatable
     public function filters()
     {
         $filters = [];
-        $filters['name'] = ['trim', 'capitalize'];
-        $filters['email'] = ['trim', 'lowercase'];
+        $filters['name'] = ['trim', 'empty_string_to_null', 'capitalize'];
+        $filters['email'] = ['trim', 'empty_string_to_null', 'lowercase'];
         return $filters;
     }
 }
