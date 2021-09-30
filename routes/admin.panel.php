@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\EmployeeController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('employees/dataTables', [EmployeeController::class, 'dataTables'])->name('employees.dataTables');
 Route::patch('employees/{employee}/password', [EmployeeController::class, 'updatePassword'])->name('employees.update.password');
