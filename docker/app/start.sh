@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-composer install --no-interaction --no-progress --no-suggest
+composer install --no-interaction --no-progress
 
 php artisan key:generate --no-interaction --force
 php artisan migrate --seed --no-interaction --force
