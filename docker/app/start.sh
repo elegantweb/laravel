@@ -3,8 +3,8 @@ set -e
 
 composer install --no-interaction --no-progress --no-suggest
 
-php artisan key:generate --no-interaction
-php artisan migrate --no-interaction --force --seed
+php artisan key:generate --no-interaction --force
+php artisan migrate --seed --no-interaction --force
 php artisan storage:link --no-interaction
 
 exec supervisord -n -c /etc/supervisord.conf
