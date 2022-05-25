@@ -10,9 +10,9 @@ use App\Http\Requests\Admin\ClientUpdatePasswordRequest;
 use App\Data\ClientData;
 use App\Data\ClientUpdateData;
 use App\Data\ClientUpdatePasswordData;
-use App\Jobs\ClientCreate;
-use App\Jobs\ClientUpdate;
-use App\Jobs\ClientUpdatePassword;
+use App\Actions\ClientStoreAction;
+use App\Actions\ClientUpdateAction;
+use App\Actions\ClientUpdatePasswordAction;
 use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
@@ -32,11 +32,11 @@ class ClientController extends Controller
         return view('admin.clients.create');
     }
 
-    public function store(ClientStoreRequest $request)
+    public function store(ClientStoreRequest $request, ClientStoreAction $action)
     {
         $data = new ClientData($request->validated());
 
-        $client = ClientCreate::dispatchNow($data);
+        $client = $action->execute($data);
 
         return redirect()->route('admin.clients.edit', $client)
                         ->with('status:success', 'User successfully stored.');
@@ -47,20 +47,26 @@ class ClientController extends Controller
         return view('admin.clients.edit', compact('client'));
     }
 
-    public function update(ClientUpdateRequest $request, Client $client)
-    {
+    public function update(
+        ClientUpdateRequest $request,
+        Client $client,
+        ClientUpdateAction $action,
+    ) {
         $data = new ClientUpdateData($request->validated());
 
-        ClientUpdate::dispatchNow($client, $data);
+        $action->execute($client, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }
 
-    public function updatePassword(ClientUpdatePasswordRequest $request, Client $client)
-    {
+    public function updatePassword(
+        ClientUpdatePasswordRequest $request,
+        Client $client,
+        ClientUpdatePasswordAction $action,
+    ) {
         $data = new ClientUpdatePasswordData($request->validated());
 
-        ClientUpdatePassword::dispatchNow($client, $data);
+        $action->execute($client, $data);
 
         return back()->with('status:success', 'User successfully updated.');
     }
