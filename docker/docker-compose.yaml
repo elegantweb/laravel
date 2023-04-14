@@ -1,12 +1,15 @@
 version: '3'
 
+name: 'laravel'
+
 services:
   database:
     container_name: laravel_database
-    build: docker/database
+    image: mariadb:10.6
     restart: unless-stopped
     volumes:
-      - ./storage/database:/var/lib/mysql
+      - ./database/config:/etc/mysql/conf.d
+      - ./database/storage/lib:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
@@ -22,21 +25,22 @@ services:
       - "8080:80"
   nginx:
     container_name: laravel_nginx
-    build: docker/nginx
+    image: nginx:1.23
     ports:
       - "80:80"
     restart: unless-stopped
     volumes:
-      - .:/var/www/html
+      - ../:/var/www/html
+      - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/storage/logs:/var/logs/nginx
   app:
     container_name: laravel_app
-    build: docker/app
+    build: ./app
     depends_on:
       - database
     restart: unless-stopped
     volumes:
-      - .:/var/www/html
+      - ../:/var/www/html
     environment:
       WAIT_HOSTS: database:3306
-      WAIT_PATHS: /var/www/html/storage/database/${DB_DATABASE}
       WAIT_AFTER: 15

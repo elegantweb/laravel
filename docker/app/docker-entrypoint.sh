@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
+composer --version
 composer install --no-interaction --no-progress
 
 php artisan key:generate --no-interaction --force
@@ -13,5 +14,6 @@ fi
 
 php artisan migrate --no-interaction --force --seed
 php artisan storage:link --no-interaction --force
+php artisan cache:clear --no-interaction
 
-exec php-fpm
+exec supervisord -c /etc/supervisord.conf

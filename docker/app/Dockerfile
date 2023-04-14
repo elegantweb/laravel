@@ -1,18 +1,22 @@
 FROM php:8.1-fpm-alpine
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-# see: https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors
-ENV COMPOSER_MEMORY_LIMIT -1
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Add supervisord
+COPY --from=ochinchina/supervisord:latest /usr/local/bin/supervisord /usr/local/bin/supervisord
+
+# Add supercronic
+ADD https://github.com/aptible/supercronic/releases/download/v0.2.1/supercronic-linux-amd64 /usr/local/bin/supercronic
+RUN chmod +x /usr/local/bin/supercronic
 
 # Add the wait script to the image
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /usr/local/bin/wait
 RUN chmod +x /usr/local/bin/wait
 
-RUN docker-php-ext-install pdo_mysql
+# Install PHP extensions
+COPY --from=mlocati/php-extension-installer:2.1.1 /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions @composer pdo_mysql
 
-COPY ./crontabs/www-data /etc/crontabs/www-data
-RUN crontab -u www-data /etc/crontabs/www-data
+COPY ./supercronic.crontab /etc/
+COPY ./supervisord.conf /etc/
 
 COPY ./docker-entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
