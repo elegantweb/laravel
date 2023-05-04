@@ -6,13 +6,13 @@ use App\Models\Client;
 use App\Http\DataTables\Admin\ClientDataTable;
 use App\Http\Requests\Admin\ClientStoreRequest;
 use App\Http\Requests\Admin\ClientUpdateRequest;
-use App\Http\Requests\Admin\ClientUpdatePasswordRequest;
+use App\Http\Requests\Admin\ClientPasswordUpdateRequest;
 use App\Data\ClientData;
 use App\Data\ClientUpdateData;
-use App\Data\ClientUpdatePasswordData;
+use App\Data\ClientPasswordUpdateData;
 use App\Actions\ClientStoreAction;
 use App\Actions\ClientUpdateAction;
-use App\Actions\ClientUpdatePasswordAction;
+use App\Actions\ClientPasswordUpdateAction;
 use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
@@ -60,11 +60,11 @@ class ClientController extends Controller
     }
 
     public function updatePassword(
-        ClientUpdatePasswordRequest $request,
+        ClientPasswordUpdateRequest $request,
         Client $client,
-        ClientUpdatePasswordAction $action,
+        ClientPasswordUpdateAction $action,
     ) {
-        $data = new ClientUpdatePasswordData($request->validated());
+        $data = new ClientPasswordUpdateData($request->validated());
 
         $action->execute($client, $data);
 

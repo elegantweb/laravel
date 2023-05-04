@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Employee;
 use App\Http\DataTables\Admin\EmployeeDataTable;
 use App\Http\Requests\Admin\EmployeeUpdateRequest;
-use App\Http\Requests\Admin\EmployeeUpdatePasswordRequest;
+use App\Http\Requests\Admin\EmployeePasswordUpdateRequest;
 use App\Data\EmployeeUpdateData;
-use App\Data\EmployeeUpdatePasswordData;
+use App\Data\EmployeePasswordUpdateData;
 use App\Actions\EmployeeUpdateAction;
-use App\Actions\EmployeeUpdatePasswordAction;
+use App\Actions\EmployeePasswordUpdateAction;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -42,11 +42,11 @@ class EmployeeController extends Controller
     }
 
     public function updatePassword(
-        EmployeeUpdatePasswordRequest $request,
+        EmployeePasswordUpdateRequest $request,
         Employee $employee,
-        EmployeeUpdatePasswordAction $action,
+        EmployeePasswordUpdateAction $action,
     ) {
-        $data = new EmployeeUpdatePasswordData($request->validated());
+        $data = new EmployeePasswordUpdateData($request->validated());
 
         $action->execute($employee, $data);
 

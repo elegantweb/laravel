@@ -2,9 +2,9 @@
 
 namespace App\Data;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
-class EmployeeUpdateData extends DataTransferObject
+class EmployeeUpdateData extends Data
 {
     public string $name;
     public string $email;
