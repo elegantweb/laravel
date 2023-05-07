@@ -34,7 +34,7 @@ class EmployeeController extends Controller
         Employee $employee,
         EmployeeUpdateAction $action,
     ) {
-        $data = new EmployeeUpdateData($request->validated());
+        $data = new EmployeeUpdateData(...$request->validated());
 
         $action->execute($employee, $data);
 
@@ -46,7 +46,7 @@ class EmployeeController extends Controller
         Employee $employee,
         EmployeePasswordUpdateAction $action,
     ) {
-        $data = new EmployeePasswordUpdateData($request->validated());
+        $data = new EmployeePasswordUpdateData(...$request->validated());
 
         $action->execute($employee, $data);
 

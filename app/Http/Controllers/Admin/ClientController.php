@@ -34,7 +34,7 @@ class ClientController extends Controller
 
     public function store(ClientStoreRequest $request, ClientStoreAction $action)
     {
-        $data = new ClientData($request->validated());
+        $data = new ClientData(...$request->validated());
 
         $client = $action->execute($data);
 
@@ -52,7 +52,7 @@ class ClientController extends Controller
         Client $client,
         ClientUpdateAction $action,
     ) {
-        $data = new ClientUpdateData($request->validated());
+        $data = new ClientUpdateData(...$request->validated());
 
         $action->execute($client, $data);
 
@@ -64,7 +64,7 @@ class ClientController extends Controller
         Client $client,
         ClientPasswordUpdateAction $action,
     ) {
-        $data = new ClientPasswordUpdateData($request->validated());
+        $data = new ClientPasswordUpdateData(...$request->validated());
 
         $action->execute($client, $data);
 

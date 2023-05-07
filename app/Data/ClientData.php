@@ -2,11 +2,12 @@
 
 namespace App\Data;
 
-use Spatie\LaravelData\Data;
-
-class ClientData extends Data
+readonly class ClientData
 {
-    public string $name;
-    public string $email;
-    public string $password;
+    public function __construct(
+        public string $name,
+        public string $email,
+        public string $password,
+    ) {
+    }
 }

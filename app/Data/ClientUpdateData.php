@@ -2,10 +2,11 @@
 
 namespace App\Data;
 
-use Spatie\LaravelData\Data;
-
-class ClientUpdateData extends Data
+readonly class ClientUpdateData
 {
-    public string $name;
-    public string $email;
+    public function __construct(
+        public string $name,
+        public string $email,
+    ) {
+    }
 }

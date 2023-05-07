@@ -2,9 +2,10 @@
 
 namespace App\Data;
 
-use Spatie\LaravelData\Data;
-
-class EmployeePasswordUpdateData extends Data
+readonly class EmployeePasswordUpdateData
 {
-    public string $password;
+    public function __construct(
+        public string $password,
+    ) {
+    }
 }
