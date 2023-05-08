@@ -9,8 +9,8 @@ class ClientUpdateAction
 {
     public function execute(Client $client, ClientUpdateData $data): void
     {
-        $attrs = $data->toArray();
-
-        $client->update($attrs);
+        $client->name = $data->name;
+        $client->email = $data->email;
+        $client->save();
     }
 }

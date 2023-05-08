@@ -9,8 +9,8 @@ class EmployeeUpdateAction
 {
     public function execute(Employee $employee, EmployeeUpdateData $data): void
     {
-        $attrs = $data->toArray();
-
-        $employee->update($attrs);
+        $employee->name = $data->name;
+        $employee->email = $data->email;
+        $employee->save();
     }
 }
